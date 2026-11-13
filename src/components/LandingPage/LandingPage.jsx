@@ -1,32 +1,40 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher'
+import CropRecommendation from '../CropTools/CropRecommendation'
+import CropRotation from '../CropTools/CropRotation'
 
 function LandingPage({ onGetStarted, onLoginClick }) {
+  const { t } = useTranslation()
+
   return (
     <div style={styles.landingContainer}>
       {/* Header / Navbar */}
       <header style={styles.navbar}>
         <div style={styles.logo}>🌱 AGROVERSE AI</div>
         <nav style={styles.navLinks}>
-          <a href="#features" style={styles.link}>Features</a>
-          <a href="#about" style={styles.link}>About Us</a>
-          <a href="#contact" style={styles.link}>Contact</a>
+          <a href="#features" style={styles.link}>{t('landing.navFeatures')}</a>
+          <a href="#crop-recommendation-section" style={styles.link}>{t('nav.cropRecommendation')}</a>
+          <a href="#crop-rotation-section" style={styles.link}>{t('nav.cropRotation')}</a>
+          <a href="#about" style={styles.link}>{t('landing.navAbout')}</a>
+          <a href="#contact" style={styles.link}>{t('landing.navContact')}</a>
         </nav>
         <div style={styles.authButtons}>
-          <button style={styles.loginBtn} onClick={onLoginClick}>Sign In</button>
-          <button style={styles.signupBtn} onClick={onGetStarted}>Sign Up</button>
+          <LanguageSwitcher />
+          <button style={styles.loginBtn} onClick={onLoginClick}>{t('landing.signIn')}</button>
+          <button style={styles.signupBtn} onClick={onGetStarted}>{t('landing.signUp')}</button>
         </div>
       </header>
 
       {/* Hero Section */}
       <section style={styles.hero}>
         <div style={styles.heroText}>
-          <h1 style={styles.heroTitle}>Smart Farming, Better Tomorrow</h1>
+          <h1 style={styles.heroTitle}>{t('landing.heroTitle')}</h1>
           <p style={styles.heroSubtitle}>
-            Transform your agricultural journey with AI-driven crop recommendations, 
-            climate insights, soil analysis, and real-time farm mapping.
+            {t('landing.heroSubtitle')}
           </p>
           <button style={styles.ctaBtn} onClick={onGetStarted}>
-            Get Started Free 🚀
+            {t('landing.getStarted')}
           </button>
         </div>
         <div style={styles.heroImage}>
@@ -41,58 +49,68 @@ function LandingPage({ onGetStarted, onLoginClick }) {
       {/* Features Overview Section */}
       <section id="features" style={styles.featuresSection}>
         <h2 style={{ textAlign: 'center', color: '#166534', marginBottom: '30px', fontSize: '32px' }}>
-          Why Choose Agroverse AI?
+          {t('landing.whyTitle')}
         </h2>
         <div style={styles.featuresGrid}>
           <div style={styles.featureCard}>
-            <h3>🌾 Crop Recommendation</h3>
-            <p>Get personalized crop suggestions based on your soil type and water availability.</p>
+            <h3>{t('landing.f1Title')}</h3>
+            <p>{t('landing.f1Text')}</p>
           </div>
           <div style={styles.featureCard}>
-            <h3>🌦️ Climate Insights</h3>
-            <p>Access real-time climate data powered by NASA APIs for weather planning.</p>
+            <h3>{t('landing.f2Title')}</h3>
+            <p>{t('landing.f2Text')}</p>
           </div>
           <div style={styles.featureCard}>
-            <h3>🧪 Soil pH Analysis</h3>
-            <p>Check soil health and receive actionable tips to improve soil fertility.</p>
+            <h3>{t('landing.f3Title')}</h3>
+            <p>{t('landing.f3Text')}</p>
           </div>
           <div style={styles.featureCard}>
-            <h3>📍 Satellite Farm Mapping</h3>
-            <p>Monitor your farmland with Leaflet interactive satellite imagery.</p>
+            <h3>{t('landing.f4Title')}</h3>
+            <p>{t('landing.f4Text')}</p>
           </div>
         </div>
       </section>
 
-      {/* 🟢 ১. About Us Section (নতুন যুক্ত করা হয়েছে) */}
+      {/* Crop Recommendation + Crop Rotation: free to use, no login needed */}
+      <section id="crop-recommendation-section" style={styles.toolSectionLight}>
+        <div style={styles.toolInner}>
+          <CropRecommendation />
+        </div>
+      </section>
+      <section id="crop-rotation-section" style={styles.toolSectionGreen}>
+        <div style={styles.toolInner}>
+          <CropRotation />
+        </div>
+      </section>
+
+      {/* 🟢 ১. About Us Section (নতুন যুক্ত করা হয়েছে) */}
       <section id="about" style={styles.aboutSection}>
         <div style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ color: '#166534', marginBottom: '20px', fontSize: '32px' }}>About Agroverse AI</h2>
+          <h2 style={{ color: '#166534', marginBottom: '20px', fontSize: '32px' }}>{t('landing.aboutTitle')}</h2>
           <p style={{ fontSize: '18px', color: '#475569', lineHeight: '1.8' }}>
-            Agroverse AI is an advanced agricultural intelligence platform designed to empower farmers with modern technology. 
-            By integrating real-time weather analytics, satellite monitoring, and machine learning crop planning, 
-            we aim to maximize yield, enhance sustainability, and make smart farming accessible for everyone.
+            {t('landing.aboutText')}
           </p>
         </div>
       </section>
 
-      {/* 🟢 ২. Contact Section (নতুন যুক্ত করা হয়েছে) */}
+      {/* 🟢 ২. Contact Section (নতুন যুক্ত করা হয়েছে) */}
       <section id="contact" style={styles.contactSection}>
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ color: '#166534', marginBottom: '15px', fontSize: '32px' }}>Get in Touch</h2>
+          <h2 style={{ color: '#166534', marginBottom: '15px', fontSize: '32px' }}>{t('landing.contactTitle')}</h2>
           <p style={{ fontSize: '16px', color: '#64748b', marginBottom: '30px' }}>
-            Have questions or need help integrating Agroverse AI into your farming operations? Reach out to us!
+            {t('landing.contactText')}
           </p>
           <div style={styles.contactCardsGroup}>
             <div style={styles.contactCard}>
-              <h4>📍 Office Location</h4>
-              <p>Purulia, West Bengal, India</p>
+              <h4>{t('landing.officeTitle')}</h4>
+              <p>{t('place.puruliaIndia')}</p>
             </div>
             <div style={styles.contactCard}>
-              <h4>📧 Email Us</h4>
+              <h4>{t('landing.emailTitle')}</h4>
               <p>support@agroverse.ai</p>
             </div>
             <div style={styles.contactCard}>
-              <h4>📞 Call Support</h4>
+              <h4>{t('landing.callTitle')}</h4>
               <p>+91 98765 43210</p>
             </div>
           </div>
@@ -101,7 +119,7 @@ function LandingPage({ onGetStarted, onLoginClick }) {
 
       {/* Footer */}
       <footer style={styles.footer}>
-        <p>© 2026 Agroverse AI. Empowering Farmers Everywhere 🌱</p>
+        <p>{t('landing.footer')}</p>
       </footer>
     </div>
   )
@@ -109,7 +127,7 @@ function LandingPage({ onGetStarted, onLoginClick }) {
 
 const styles = {
   landingContainer: {
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, 'Noto Sans Bengali', sans-serif",
     backgroundColor: '#f8fafc',
     color: '#1e293b',
     minHeight: '100vh',
@@ -117,6 +135,8 @@ const styles = {
   },
   navbar: {
     display: 'flex',
+    flexWrap: 'wrap',
+    gap: '12px',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '20px 40px',
@@ -133,6 +153,7 @@ const styles = {
   },
   navLinks: {
     display: 'flex',
+    flexWrap: 'wrap',
     gap: '25px',
   },
   link: {
@@ -201,6 +222,20 @@ const styles = {
     flex: '1 1 400px',
     display: 'flex',
     justifyContent: 'center',
+  },
+  toolSectionLight: {
+    padding: '20px 40px',
+    backgroundColor: '#f8fafc',
+    scrollMarginTop: '80px',
+  },
+  toolSectionGreen: {
+    padding: '20px 40px',
+    backgroundColor: '#f0fdf4',
+    scrollMarginTop: '80px',
+  },
+  toolInner: {
+    maxWidth: '1200px',
+    margin: '0 auto',
   },
   featuresSection: {
     padding: '80px 40px',
